@@ -57,14 +57,11 @@
 
 			var elemento;
 			var gatos = octopus.getCats();
-			console.log(gatos.length);
 
 			for(var x = 0; x < gatos.length; x++){
 				elemento = document.createElement('li');
 				var textEle = document.createTextNode(gatos[x].nombre);
 				elemento.appendChild(textEle);
-				console.log(elemento);
-				elemento
 				lista.appendChild(elemento);
 			}
 	}
