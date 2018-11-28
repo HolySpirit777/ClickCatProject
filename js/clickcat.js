@@ -1,7 +1,9 @@
 	
 	var model = {
+		currentCat: null,
 		
-    cats : [
+		cats : [
+		
 		{
 			click : 0,
 			nombre: "Misho",
@@ -40,12 +42,21 @@
 		},
 		
 		clickUp: function (index){
-			model.cats[x].click  += 1;
+			return model.cats[index].click  += 1;
 		},
 		
 		getCats: function (){
 			return model.cats;
+		},
+		
+		setCurrentCat(index){
+			return model.currentCat = index;
+		},
+		
+		getCurrentCat(){
+			return model.currentCat;
 		}
+		
 		
 		
 	}
@@ -54,17 +65,51 @@
 		
 		init : function(){
 			var lista = document.getElementById('listaGatos');
-
+			var gatoNombre = document.getElementById('nombreGato');
+			var Imagen = document.getElementById('gatoImagen');
+			var clickGato = document.getElementById('clicks');
+				
 			var elemento;
 			var gatos = octopus.getCats();
+			var x = 0;
 
-			for(var x = 0; x < gatos.length; x++){
+			for(x; x < gatos.length; x++){
 				elemento = document.createElement('li');
+				gatoImagen = document.createElement('img');
+				elemento.setAttribute("class", "evento");
+				
+				lista.appendChild(elemento);
+				
+				clickImage = document.querySelector('#gatoImagen');
+				
 				var textEle = document.createTextNode(gatos[x].nombre);
 				elemento.appendChild(textEle);
-				lista.appendChild(elemento);
+				
+				var evento = document.querySelectorAll(".evento");
+				
+						
+					(function(id){
+						evento[id].addEventListener("click", function() {
+
+							gatoNombre.innerHTML = gatos[id].nombre;
+							Imagen.setAttribute("src", gatos[id].src);
+							octopus.setCurrentCat(id);
+							clickGato.innerHTML = gatos[id].click;
+							
+						});
+					}(x));
 			}
+			
+			clickImage.addEventListener("click", function() {	
+					
+					clickGato.innerHTML = octopus.clickUp(octopus.getCurrentCat());
+					
+			});
+			
+			
 	}
 }
+
+
 
 octopus.init();
