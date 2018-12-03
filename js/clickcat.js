@@ -57,16 +57,37 @@
 			return model.currentCat;
 		}
 		
-		
-		
 	}
 	
 	var listaView = {
 		
-		init : function(){
+		update : function(){
 			var lista = document.getElementById('listaGatos');
 			var gatoNombre = document.getElementById('nombreGato');
+			var clickGato = document.getElementById('clicks');
 			var Imagen = document.getElementById('gatoImagen');
+			var elemento;
+			var gatos = octopus.getCats();
+			var x = 0;
+			var evento = document.querySelectorAll(".evento");
+			
+			gatoNombre.innerHTML = octopus.getCats()[octopus.getCurrentCat()].nombre;
+			clickGato.innerHTML = octopus.getCats()[octopus.getCurrentCat()].click;
+			Imagen.setAttribute("src", octopus.getCats()[octopus.getCurrentCat()].src);
+			
+			
+			for(x; x < gatos.length; x++){
+				
+				evento[x].innerHTML = gatos[x].nombre;
+				
+			}
+			
+		},
+		
+		init : function(){
+			var lista = document.getElementById('listaGatos');
+			var Imagen = document.getElementById('gatoImagen');
+			var gatoNombre = document.getElementById('nombreGato');
 			var clickGato = document.getElementById('clicks');
 				
 			var elemento;
@@ -75,7 +96,6 @@
 
 			for(x; x < gatos.length; x++){
 				elemento = document.createElement('li');
-				gatoImagen = document.createElement('img');
 				elemento.setAttribute("class", "evento");
 				
 				lista.appendChild(elemento);
@@ -95,6 +115,9 @@
 							Imagen.setAttribute("src", gatos[id].src);
 							octopus.setCurrentCat(id);
 							clickGato.innerHTML = gatos[id].click;
+							document.getElementById("deleteElement1").value = "";
+							document.getElementById("deleteElement2").value = "";
+							document.getElementById("deleteElement3").value = "";
 							
 						});
 					}(x));
@@ -106,6 +129,49 @@
 					
 			});
 			
+			document.getElementById("save1").addEventListener("click", function() {
+				
+				if(document.getElementById("deleteElement1").value === ""){
+					alert("campo nombre vacio!");
+					
+					//document.getElementById("deleteElement1").value;
+				}else{
+					octopus.getCats()[octopus.getCurrentCat()].nombre = document.getElementById("deleteElement1").value;
+
+					listaView.update();
+
+				}
+			});
+			
+			
+			document.getElementById("save2").addEventListener("click", function() {
+				
+				if(document.getElementById("deleteElement2").value === ""){
+					alert("campo nombre vacio!");
+					
+					//document.getElementById("deleteElement1").value;
+				}else{
+					octopus.getCats()[octopus.getCurrentCat()].src = document.getElementById("deleteElement2").value;
+					//alert(octopus.getCats()[octopus.getCurrentCat()].src);
+					listaView.update();
+
+				}
+			});
+			
+			
+			document.getElementById("save3").addEventListener("click", function() {
+				
+				if(document.getElementById("deleteElement3").value === ""){
+					alert("campo nombre vacio!");
+					
+					//document.getElementById("deleteElement1").value;
+				}else{
+					octopus.getCats()[octopus.getCurrentCat()].click = parseInt(document.getElementById("deleteElement3").value);
+					listaView.update();
+
+				}
+			});
+			
 			
 	}
 }
@@ -113,3 +179,4 @@
 
 
 octopus.init();
+

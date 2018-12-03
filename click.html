@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge
+  <script src="jquery-3.3.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
   <link rel="stylesheet" type="text/css" href="css/clickstyle.css">
 
   <title>Click!</title>
+  
 </head>
 <body>
 
@@ -16,9 +18,73 @@
     <ul id="listaGatos"></ul>
     <div id="nombreGato"></div>
     <img id="gatoImagen" src="">
-    <div id="clicks">0</div>
+    <div id="clicks">-</div>
+	<br>
+	<button id="buttonClick"><b>Admin</b></button>
+	<br><br>
+	<div id="name" style="display:none;">Name:  <input type="text" id="deleteElement1"> </div>
+	<br>
+	<div style="display:none;" class="select"><button id="save1">Save</button>  <button id="delete1">Delete</button></div>	
+	<br>
+    <div id="source" style="display:none;">Source:  <input type="text" id="deleteElement2"> </div>
+	<br>
+    <div style="display:none;" class="select"><button id="save2">Save</button>  <button id="delete2">Delete</button></div>		
+	<br>
+	<div id="click" style="display:none;">Clicks:  <input type="text" id="deleteElement3"> </div>
+	<br>
+	<div style="display:none;" class="select"><button id="save3">Save</button>  <button id="delete3">Delete</button></div>	
+
+    
   </div>
 
+  
+ <script>
+
+$(document).ready(function(){
+
+$("#buttonClick").click(function () {
+	
+$("#name").toggle();
+$("#source").toggle();
+$("#click").toggle();
+$(".select").toggle();
+	
+});
+$("#delete1").click(function () {
+
+if(document.getElementById("deleteElement1").value === ""){
+alert("campo vacio!!");
+}else{
+document.getElementById("deleteElement1").value = "";
+}
+
+});
+
+$("#delete2").click(function () {
+
+if(document.getElementById("deleteElement2").value === ""){
+alert("campo vacio!!");
+}else{
+document.getElementById("deleteElement2").value = "";
+
+}
+});
+
+$("#delete3").click(function () {
+
+if(document.getElementById("deleteElement3").value === ""){
+alert("campo vacio!!");
+}else{
+document.getElementById("deleteElement3").value = "";
+}
+
+});
+
+});
+
+</script>
 </body>
+
 <script src="js/clickcat.js"></script>
+
 </html>
